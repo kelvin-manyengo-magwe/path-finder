@@ -40,6 +40,13 @@ function LoginScreen(){
                                   <Text className="font-bold text-xl text-center text-white">Login</Text>
                           </TouchableOpacity>
                       </View>
+
+                      <View className="flex-row justify-center">
+                            <Text>Don't have an account ?</Text>
+                            <TouchableOpacity>
+                                  <Text className="text-sky-600">Signup</Text>
+                            </TouchableOpacity>
+                      </View>
                 </View>
             </View>
       </View>
