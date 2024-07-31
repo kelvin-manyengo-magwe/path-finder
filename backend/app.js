@@ -1,8 +1,14 @@
 
 //aquiring the express from the package
 const express= require("express");
+
+
+//requiring the UserDetails from ./
+require("./UserDetails");
+
 //initializing the express
 const app= express();
+
 
 //aquire the mongooose package
 const mongoose= require("mongoose");
@@ -23,6 +29,34 @@ app.listen(port, () => {
   console.log(`Node Js server Started at server http:://localhost:${port}`);
 });
 
+
+const User= mongoose.model('UserInfo');
+
+
+//post request for register
+app.post('/register', async (req, res) => {
+    const { name, email, password }= req.body;
+
+    const oldUser= await User.findOne({ email: email });
+
+    if(oldUser) { //if old user if found it return something then it will not go forward
+        return res.send({data: "User Already Exists."});
+    }
+
+    try {
+            await User.create({
+              name: name,
+              email: email,
+              password: password,
+            });
+
+            res.send({status: "Ok",
+                      data: "User Successuly created." });
+    } catch(error) {
+        res.send({status: "Registration error",
+                  data: error });
+    }
+});
 
 //the api methods getting response through /
 app.get('/', (req, res) => {
