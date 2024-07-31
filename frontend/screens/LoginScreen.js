@@ -29,7 +29,7 @@ function LoginScreen(){
                   <Title title="Login" />
 
                 {/*form*/}
-                <View className="flex items-center pt-40 space-y-8 mx-4">
+                <View className="flex items-center pt-20 space-y-8 mx-4">
 
                         {/*Email*/}
                         <InputField placeholder="Email" />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, Image, TextInput, TouchableOpacity } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import Animated, { FadeInDown, BounceIn, BounceOut, FadeIn, FadeOut} from 'react-native-reanimated';
@@ -7,11 +7,30 @@ import Title from './components/Title.js';
 import InputField from './components/InputField';
 import AuthButton from './components/AuthButton';
 import NavigationLink from './components/NavigationLink';
+import axios from 'axios';
 
+
+function handleSubmit(userData) {
+    axios.post('http:://192.168.242.218:5001', userData).
+      then((res) =>
+          console.log(res.data)).
+      catch((e) => console.error(e));
+}
 
 function LoginScreen(){
 
     const navigation= useNavigation();
+
+    const [userData, setUserData] = useState({
+        name: '', email: '', password: ''
+    });
+
+    //text represent the current value of onChange fx wherenever input changes
+
+    const handleTextChange= (key, value) => {
+      setUserData({ ...userData, [key]: value });
+    }
+
   return (
       <View className="bg-white h-full w-full pt-2">
           <StatusBar style="light" />
@@ -29,18 +48,21 @@ function LoginScreen(){
                   <Title title="Signup" />
 
                 {/*form*/}
-                <View className="flex items-center pt-40 space-y-8 mx-4">
+                <View className="flex items-center pt-20 space-y-4 mx-4">
+
+                        {/*name*/}
+                        <InputField placeholder="Name" value={userData.name} onChangeText={(text) => handleTextChange('name', text)} />
 
                         {/*Email*/}
-                        <InputField placeholder="Email" />
+                        <InputField placeholder="Email" value={userData.email} onChangeText={(text) => handleTextChange('email', text)} />
 
-                      <Animated.View entering={FadeInDown.delay(200).duration(1000).springify()} className="w-full bg-black/5 p-5 rounded-2xl mb-8">
-                          <TextInput placeholder="Password" placeholderTextColor={'gray'} secureTextEntry/>
+                      <Animated.View entering={FadeInDown.delay(200).duration(1000).springify()} className="w-full bg-black/5 p-5 rounded-2xl mb-4">
+                          <TextInput placeholder="Password" placeholderTextColor={'gray'} value={userData.password} onChangeText={(text) => handleTextChange('password', text)} secureTextEntry/>
                       </Animated.View>
 
 
                         {/*loginButton*/}
-                          <AuthButton buttonName="Signup" />
+                          <AuthButton onPress={(userData) => handleSubmit(userData)} buttonName="Signup" />
 
 
                         {/*navigatio link*/}
