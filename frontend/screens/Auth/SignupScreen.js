@@ -3,15 +3,15 @@ import { View, Text, Image, TextInput, TouchableOpacity } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import Animated, { FadeInDown, BounceIn, BounceOut, FadeIn, FadeOut} from 'react-native-reanimated';
 import { useNavigation } from '@react-navigation/native';
-import Title from './components/Title.js';
-import InputField from './components/InputField';
-import AuthButton from './components/AuthButton';
-import NavigationLink from './components/NavigationLink';
+import Title from '../components/Title.js';
+import InputField from '../components/InputField';
+import AuthButton from '../components/AuthButton';
+import NavigationLink from '../components/NavigationLink';
 import axios from 'axios';
 
 
 function handleSubmit(userData) {
-    axios.post('http:://192.168.242.218:5001', userData).
+    axios.post('http://192.168.242.218:5001/register', userData).
       then((res) =>
           console.log(res.data)).
       catch((e) => console.error(e));
@@ -31,15 +31,16 @@ function LoginScreen(){
       setUserData({ ...userData, [key]: value });
     }
 
+
   return (
       <View className="bg-white h-full w-full pt-2">
           <StatusBar style="light" />
-          <Image className="h-full w-full absolute" source={require('../assets/images/background.png')} />
+          <Image className="h-full w-full absolute" source={require('../../assets/images/background.png')} />
 
           {/*lights*/}
           <View className="absolute flex-row justify-around w-full">
-              <Animated.Image entering={BounceIn.delay(200).duration(1500).springify().damping(3)} className="h-[225] w-[90]" source={require('../assets/images/light.png')} />
-              <Animated.Image entering={BounceIn.delay(400).duration(1500).springify().damping(3)} className="h-[160] w-[65]" source={require('../assets/images/light.png')}  />
+              <Animated.Image entering={BounceIn.delay(200).duration(1500).springify().damping(3)} className="h-[225] w-[90]" source={require('../../assets/images/light.png')} />
+              <Animated.Image entering={BounceIn.delay(400).duration(1500).springify().damping(3)} className="h-[160] w-[65]" source={require('../../assets/images/light.png')}  />
           </View>
 
             {/*text and form*/}
@@ -62,7 +63,7 @@ function LoginScreen(){
 
 
                         {/*loginButton*/}
-                          <AuthButton onPress={(userData) => handleSubmit(userData)} buttonName="Signup" />
+                          <AuthButton handleTextChange={handleTextChange} buttonName="Signup" onPress={() => handleSubmit(userData)} />
 
 
                         {/*navigatio link*/}
