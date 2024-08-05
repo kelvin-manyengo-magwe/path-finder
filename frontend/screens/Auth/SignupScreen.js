@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Image, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TextInput, TouchableOpacity, Alert } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import Animated, { FadeInDown, BounceIn, BounceOut, FadeIn, FadeOut} from 'react-native-reanimated';
 import { useNavigation } from '@react-navigation/native';
@@ -10,12 +10,6 @@ import NavigationLink from '../components/NavigationLink';
 import axios from 'axios';
 
 
-function handleSubmit(userData) {
-    axios.post('http://192.168.242.218:5001/register', userData).
-      then((res) =>
-          console.log(res.data)).
-      catch((e) => console.error(e));
-}
 
 function LoginScreen(){
 
@@ -24,6 +18,14 @@ function LoginScreen(){
     const [userData, setUserData] = useState({
         name: '', email: '', password: ''
     });
+
+    const handleSubmit= async () => {
+        await axios.post('http://192.168.26.218:5001/register', userData).then(
+            (res) => console.log(res.data).catch(
+              e => console.error(e)
+            )
+        )
+    }
 
     //text represent the current value of onChange fx wherenever input changes
 
@@ -63,7 +65,7 @@ function LoginScreen(){
 
 
                         {/*loginButton*/}
-                          <AuthButton handleTextChange={handleTextChange} buttonName="Signup" onPress={() => handleSubmit(userData)} />
+                          <AuthButton handleTextChange={handleTextChange} buttonName="Signup" onPress={handleSubmit} />
 
 
                         {/*navigatio link*/}

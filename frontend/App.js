@@ -6,6 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from './screens/Auth/LoginScreen';
 import SignupScreen from './screens/Auth/SignupScreen';
 import SplashScreen from './screens/splashScreen/SplashScreen';
+import Animated, { Easing, FadeIn, FadeOut } from 'react-native-reanimated';
 
 
 export default function App() {
@@ -22,7 +23,9 @@ export default function App() {
       return (
         <>
           {isSplash ? (
-              <SplashScreen />
+              <Animated.View style={{ flex: 1 }} entering={FadeIn.duration(1000)} exiting={FadeOut.duration(1000)}>
+                  <SplashScreen />
+              </Animated.View>
           ) : (
             <NavigationContainer>
               <Stack.Navigator initialRouteName="Login" screenOptions={{headerShown: false}}>

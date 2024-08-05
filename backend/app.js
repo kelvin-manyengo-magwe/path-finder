@@ -9,6 +9,9 @@ require("./UserDetails");
 //initializing the express
 const app= express();
 
+//adding middleware to parse JSON data
+app.use(express.json());
+
 
 //aquire the mongooose package
 const mongoose= require("mongoose");
@@ -16,11 +19,15 @@ const mongoose= require("mongoose");
 const mongoUrl= "mongodb+srv://kelvinmullar5:admin@cluster1.vybkmpe.mongodb.net/?retryWrites=true&w=majority&appName=Cluster1";
 const port= 5001;
 
+  process.on('unhandledRejection', (reason, promise) => {
+    console.error("Unhandled Promise Rejection")
+  } );
+
 //connecting to the mongodb. mongoose object has only one method
 mongoose.connect(mongoUrl).then(() => {
   console.log("Mongodb Database connected.");  //promise return be the connect through the callback
-}).catch((e) => {
-    console.log(e); //catching the error for promise returned
+}).catch(e => {
+    console.error(e); //catching the error for promise returned
 });
 
 //listening to the server port by listen function as express object
@@ -44,7 +51,7 @@ app.post('/register', async (req, res) => {
     }
 
     try {
-            await User.create({
+            await User.create({ //without await the user return the promise and is not being handled
               name: name,
               email: email,
               password: password,
