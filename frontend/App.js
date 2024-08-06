@@ -7,6 +7,7 @@ import LoginScreen from './screens/Auth/LoginScreen';
 import SignupScreen from './screens/Auth/SignupScreen';
 import SplashScreen from './screens/splashScreen/SplashScreen';
 import Animated, { Easing, FadeIn, FadeOut } from 'react-native-reanimated';
+import Home from './screens/Home/Home';
 
 
 export default function App() {
@@ -31,6 +32,7 @@ export default function App() {
               <Stack.Navigator initialRouteName="Login" screenOptions={{headerShown: false}}>
                   <Stack.Screen name="Login" component={LoginScreen} />
                   <Stack.Screen name="Signup" component={SignupScreen} />
+                  <Stack.Screen name="Home" component={Home} />
               </Stack.Navigator>
             </NavigationContainer>
           )

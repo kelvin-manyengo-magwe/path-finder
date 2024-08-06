@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import Animated, { FadeInDown, BounceIn, BounceOut, FadeIn, FadeOut} from 'react-native-reanimated';
 import { useNavigation } from '@react-navigation/native';
@@ -29,7 +29,7 @@ function LoginScreen(){
                   <Title title="Login" />
 
                 {/*form*/}
-                <View className="flex items-center pt-20 space-y-8 mx-4">
+                <View style={styles.form} className="flex items-center space-y-8 mx-4">
 
                         {/*Email*/}
                         <InputField placeholder="Email" />
@@ -53,3 +53,10 @@ function LoginScreen(){
 }
 
 export default LoginScreen;
+
+
+const styles= StyleSheet.create({
+  form: {
+    marginTop: 100
+  }
+});
