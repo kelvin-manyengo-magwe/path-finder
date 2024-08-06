@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import Box from '../components/Box';
+import TabNavigation from '../../BottomTabNavigation/TabNavigation';
 
 
 const Home = () => {
@@ -20,6 +21,8 @@ const Home = () => {
                       <Box key={index} title={`Box ${index}`}/>
                     ))}
             </View>
+
+            
       </View>
     )
 }
@@ -28,7 +31,7 @@ export default Home;
 
 const styles= StyleSheet.create({
   header: {
-    paddingTop: 20,
+    paddingTop: 23,
     backgroundColor: '#2A65D6'
   },
   grid: {
