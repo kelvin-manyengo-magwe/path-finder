@@ -1,11 +1,12 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import Box from '../components/Box';
-import TabNavigation from '../../BottomTabNavigation/TabNavigation';
+import { useNavigation } from '@react-navigation/native';
+
 
 
 const Home = () => {
+    const navigation= useNavigation();
 
     return (
       <View className="h-full w-full bg-white">
@@ -15,14 +16,21 @@ const Home = () => {
                   <Text className="text-2xl text-white text-left font-bold ml-8 mt-2">Home</Text>
             </View>
 
-            <View style={styles.grid} className="m-4">
-                {/*mapping of the elements using the Array creation (lenght, mapping part(currentItem, currentIndexItem))*/}
-                  {Array.from({length: 8}, (_, index) => (
-                      <Box key={index} title={`Box ${index}`}/>
-                    ))}
+            <View style={styles.container} className="m-4">
+                  <TouchableOpacity styles={style.box} onPress={() => navigation.push('Attendance')}>
+                      <Text className="font-bold text-xl">Attendance</Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity onPress={() => navigation.push('Payments')}>
+                      <Text className="font-bold text-xl">Payments</Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity onPress={() => navigation.push('NoticeBoard')}>
+                      <Text className="font-bold text-xl">Notice Board</Text>
+                  </TouchableOpacity>
             </View>
 
-            
+
       </View>
     )
 }
@@ -34,11 +42,18 @@ const styles= StyleSheet.create({
     paddingTop: 23,
     backgroundColor: '#2A65D6'
   },
-  grid: {
+  container: {
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'flex-start',
+    justifyContent: 'space-around',
     alignItems: 'center'
+  },
+  box: {
+      backgroundColor: 'lightblue',
+      width: '30%',
+      height: 100,
+      justifyContent: 'center',
+      alignItems: 'center',
   }
 });

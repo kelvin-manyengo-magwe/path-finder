@@ -13,10 +13,10 @@ function TabNavigation() {
   return (
       <NavigationContainer>
           <Tab.Navigator>
-              <Tab.Screen name="Home" component={Home} />
+              {/*<Tab.Screen name="Home" component={Home} />
               <Tab.Screen name="Calendar" component={Calendar}  />
               <Tab.Screen name="Chats" component={Chats}/>
-              <Tab.Screen name="Profile" component={Profile} />
+              <Tab.Screen name="Profile" component={Profile} />*/}
           </Tab.Navigator>
       </NavigationContainer>
   )

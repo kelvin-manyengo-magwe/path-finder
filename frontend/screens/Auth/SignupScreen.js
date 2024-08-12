@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Image, TextInput, TouchableOpacity, StyleSheet, Alert, ActivityIndicator } from 'react-native';
+import { View, Text, Image, TextInput, TouchableOpacity, StyleSheet, Alert, ActivityIndicator, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import Animated, { FadeInDown, BounceIn, BounceOut, FadeIn, FadeOut} from 'react-native-reanimated';
 import { useNavigation } from '@react-navigation/native';
@@ -11,8 +11,16 @@ import axios from 'axios';
 import Home from '../Home/Home';
 
 
+  const DismissKeyBoard = ({ children }) => {
+      return (
+        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+            {children}
+        </TouchableWithoutFeedback>
+      )
+  }
 
-function LoginScreen(){
+
+function SignupScreen(){
 
     const navigation= useNavigation();
 
@@ -30,7 +38,7 @@ function LoginScreen(){
 
         setLoading(true);
         try {
-          const res= await axios.post('http://192.168.26.218:5001/register', userData);
+          const res= await axios.post('http://192.168.15.191:5001/register', userData);
 
           navigation.navigate('Home');
         }catch (error) {
@@ -51,54 +59,56 @@ function LoginScreen(){
 
 
   return (
-      <View className="bg-white h-full w-full pt-2">
-          <StatusBar style="light" />
-          <Image className="h-full w-full absolute" source={require('../../assets/images/background.png')} />
+    <DismissKeyBoard>
+          <View className="bg-white h-full w-full pt-2">
+                <StatusBar style="light" />
+                <Image className="h-full w-full absolute" source={require('../../assets/images/background.png')} />
 
-          {/*lights*/}
-          <View className="absolute flex-row justify-around w-full">
-              <Animated.Image entering={BounceIn.delay(200).duration(1500).springify().damping(3)} className="h-[225] w-[90]" source={require('../../assets/images/light.png')} />
-              <Animated.Image entering={BounceIn.delay(400).duration(1500).springify().damping(3)} className="h-[160] w-[65]" source={require('../../assets/images/light.png')}  />
-          </View>
+              {/*lights*/}
+              <View className="absolute flex-row justify-around w-full">
+                  <Animated.Image entering={BounceIn.delay(200).duration(1500).springify().damping(3)} className="h-[225] w-[90]" source={require('../../assets/images/light.png')} />
+                  <Animated.Image entering={BounceIn.delay(400).duration(1500).springify().damping(3)} className="h-[160] w-[65]" source={require('../../assets/images/light.png')}  />
+              </View>
 
-            {/*text and form*/}
-                <View className="h-full w-full flex-1 pt-60 pb-10">
-                {/*Title*/}
-                  <Title title="Signup" />
+                {/*text and form*/}
+                    <View className="h-full w-full flex-1 pt-60 pb-10">
+                        {/*Title*/}
+                          <Title title="Signup" />
 
-                {/*form*/}
-                <View style={styles.form} className="flex items-center space-y-4 mx-4">
+                    {/*form*/}
+                    <View style={styles.form} className="flex items-center space-y-4 mx-4">
 
-                        {/*name*/}
-                        <InputField placeholder="Name" value={userData.name} onChangeText={(text) => handleTextChange('name', text)} />
+                                {/*name*/}
+                                <InputField placeholder="Name" value={userData.name} onChangeText={(text) => handleTextChange('name', text)} />
 
-                        {/*Email*/}
-                        <InputField placeholder="Email" value={userData.email} onChangeText={(text) => handleTextChange('email', text)} />
+                                {/*Email*/}
+                                <InputField placeholder="Email" value={userData.email} onChangeText={(text) => handleTextChange('email', text)} />
 
-                        {/*mobile no*/}
-                        <InputField placeholder="Mobile no" value={userData.mobileNo} onChangeText={(text) => handleTextChange('mobileNo', text)} />
+                                {/*mobile no*/}
+                                <InputField placeholder="Mobile no" keyboardType="numeric" value={userData.mobileNo} onChangeText={(text) => handleTextChange('mobileNo', text)} />
 
-                      <Animated.View entering={FadeInDown.delay(200).duration(1000).springify()} className="w-full bg-black/5 p-5 rounded-2xl mb-4">
-                          <TextInput placeholder="Password" placeholderTextColor={'gray'} value={userData.password} onChangeText={(text) => handleTextChange('password', text)} secureTextEntry/>
-                      </Animated.View>
-
-
-                        {/*loginButton*/}
-
-                              <AuthButton handleTextChange={handleTextChange} bool={loading} buttonName={loading ? 'Loading...' : 'Sign Up'} onPress={handleSubmit} />
+                          <Animated.View entering={FadeInDown.delay(200).duration(1000).springify()} className="w-full bg-black/5 p-5 rounded-2xl mb-4">
+                              <TextInput placeholder="Password" placeholderTextColor={'gray'} value={userData.password} onChangeText={(text) => handleTextChange('password', text)} secureTextEntry/>
+                          </Animated.View>
 
 
+                            {/*loginButton*/}
 
-                        {/*navigatio link*/}
-                        <NavigationLink  description="Already have an account ? " link="Login" screenName="Login" />
+                                  <AuthButton handleTextChange={handleTextChange} bool={loading} buttonName={loading ? 'Loading...' : 'Sign Up'} onPress={handleSubmit} />
 
+
+
+                            {/*navigatio link*/}
+                            <NavigationLink  description="Already have an account ? " link="Login" screenName="Login" />
+
+                    </View>
                 </View>
-            </View>
-      </View>
+          </View>
+      </DismissKeyBoard>
   )
 }
 
-export default LoginScreen;
+export default SignupScreen;
 
 
 

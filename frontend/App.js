@@ -8,16 +8,27 @@ import SignupScreen from './screens/Auth/SignupScreen';
 import SplashScreen from './screens/splashScreen/SplashScreen';
 import Animated, { Easing, FadeIn, FadeOut } from 'react-native-reanimated';
 import Home from './screens/Home/Home';
-import TabNavigation from './screens/BottomTabNavigation/TabNavigation';
+/*import TabNavigation from './screens/BottomTabNavigation/TabNavigation';*/
 
 
 function StackNavigator() {
+    const AuthStack= createNativeStackNavigator();
       return (
-          <Stack.Navigator initialRouteName="Login" screenOptions={{headerShown: false}}>
-              <Stack.Screen name="Login" component={LoginScreen} />
-              <Stack.Screen name="Signup" component={SignupScreen} />
-              <Stack.Screen name="Home" component={Home} />
-          </Stack.Navigator>
+          <AuthStack.Navigator initialRouteName="Login" screenOptions={{headerShown: false}}>
+              <AuthStack.Screen name="Login" component={LoginScreen} />
+              <AuthStack.Screen name="Signup" component={SignupScreen} />
+              <AuthStack.Screen name="Home" component={Home} />
+          </AuthStack.Navigator>
+      )
+}
+
+const MainStack = () => {
+  const NavigationStack= createNativeStackNavigator();
+
+      return (
+          <NavigationStack.Navigator>
+              <NavigationStack name="Home" component={Home} />
+          </NavigationStack.Navigator>
       )
 }
 
@@ -41,12 +52,13 @@ export default function App() {
               </Animated.View>
           ) : (
             <NavigationContainer>
-                {isLogged ? (
+                {/*isLogged ? (
                     <TabNavigation />
                 ) : (
                         <StackNavigator />
                     )
-                }
+                */}
+                    <StackNavigator />
             </NavigationContainer>
           )
           }
