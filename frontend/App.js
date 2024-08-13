@@ -27,7 +27,10 @@ const MainStack = () => {
 
       return (
           <NavigationStack.Navigator>
-              <NavigationStack name="Home" component={Home} />
+              <NavigationStack.Screen name="Home" component={Home} />
+              <NavigationStack.Screen name="Attendance" component={Attendance} />
+              <NavigationStack.Screen name="Payments" component={Payments} />
+              <NavigationStack.Screen name="NoticeBoard" component={NoticeBoard} />
           </NavigationStack.Navigator>
       )
 }

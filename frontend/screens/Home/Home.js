@@ -16,18 +16,22 @@ const Home = () => {
                   <Text className="text-2xl text-white text-left font-bold ml-8 mt-2">Home</Text>
             </View>
 
-            <View style={styles.container} className="m-4">
-                  <TouchableOpacity styles={style.box} onPress={() => navigation.push('Attendance')}>
-                      <Text className="font-bold text-xl">Attendance</Text>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity onPress={() => navigation.push('Payments')}>
-                      <Text className="font-bold text-xl">Payments</Text>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity onPress={() => navigation.push('NoticeBoard')}>
-                      <Text className="font-bold text-xl">Notice Board</Text>
-                  </TouchableOpacity>
+            <View style={styles.container} className="mt-6 mx-2">
+                <View style={[styles.shadowAndroid, styles.box, styles.shadowIos]}>
+                      <TouchableOpacity onPress={() => navigation.push('Attendance')}>
+                          <Text className="font-bold text-xl">Attendance</Text>
+                      </TouchableOpacity>
+                </View>
+                <View style={[styles.shadowAndroid, styles.box, styles.shadowIos]}>
+                      <TouchableOpacity onPress={() => navigation.push('Payments')}>
+                          <Text className="font-bold text-xl">Payments</Text>
+                      </TouchableOpacity>
+                </View>
+                <View style={[styles.shadowAndroid, styles.box, styles.shadowIos]}>
+                    <TouchableOpacity onPress={() => navigation.push('NoticeBoard')}>
+                        <Text className="font-bold text-xl">Notice Board</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
 
 
@@ -50,10 +54,22 @@ const styles= StyleSheet.create({
     alignItems: 'center'
   },
   box: {
-      backgroundColor: 'lightblue',
+      borderRadius: 7,
       width: '30%',
-      height: 100,
+      height: '50%',
+      padding: 5,
       justifyContent: 'center',
+      backgroundColor: '#fff',
       alignItems: 'center',
+  },
+  shadowIos: { //shadow prop for ios
+      shadowColor: '#171717',
+      shadowOffset: {width: 3, height: 3},
+      shadowOpacity: 0.2,
+      shadowRadius: 3,
+  },
+  shadowAndroid: {
+      elevation: 5,
+      shadowColor: '#171717',
   }
 });

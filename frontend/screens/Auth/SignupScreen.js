@@ -9,15 +9,9 @@ import AuthButton from '../components/AuthButton';
 import NavigationLink from '../components/NavigationLink';
 import axios from 'axios';
 import Home from '../Home/Home';
+import DismissKeyboard from '../components/DismissKeyboard';
 
 
-  const DismissKeyBoard = ({ children }) => {
-      return (
-        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-            {children}
-        </TouchableWithoutFeedback>
-      )
-  }
 
 
 function SignupScreen(){
@@ -59,7 +53,7 @@ function SignupScreen(){
 
 
   return (
-    <DismissKeyBoard>
+    <DismissKeyboard>
           <View className="bg-white h-full w-full pt-2">
                 <StatusBar style="light" />
                 <Image className="h-full w-full absolute" source={require('../../assets/images/background.png')} />
@@ -104,7 +98,7 @@ function SignupScreen(){
                     </View>
                 </View>
           </View>
-      </DismissKeyBoard>
+      </DismissKeyboard>
   )
 }
 

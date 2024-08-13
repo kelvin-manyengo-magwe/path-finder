@@ -7,14 +7,14 @@ import Title from '../components/Title.js';
 import InputField from '../components/InputField';
 import AuthButton from '../components/AuthButton';
 import NavigationLink from '../components/NavigationLink';
-import { DismissKeyBoard } from './SignupScreen';
+import DismissKeyboard from '../components/DismissKeyboard';
 
 
 function LoginScreen(){
 
     const navigation= useNavigation();
   return (
-    <DismissKeyBoard>
+    <DismissKeyboard>
           <View className="bg-white h-full w-full pt-2">
                 <StatusBar style="light" />
                 <Image className="h-full w-full absolute" source={require('../../assets/images/background.png')} />
@@ -51,7 +51,7 @@ function LoginScreen(){
                       </View>
                   </View>
           </View>
-    </DismissKeyBoard>
+    </DismissKeyboard>
   )
 }
 
