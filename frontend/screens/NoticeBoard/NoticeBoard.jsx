@@ -21,7 +21,6 @@ const NoticeBoard = () => {
                     ))}
             </View>
 
-
       </View>
     )
 }

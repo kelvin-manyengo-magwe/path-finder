@@ -8,35 +8,20 @@ import SignupScreen from './screens/Auth/SignupScreen';
 import SplashScreen from './screens/splashScreen/SplashScreen';
 import Animated, { Easing, FadeIn, FadeOut } from 'react-native-reanimated';
 import Home from './screens/Home/Home';
+import Profile from './screens/Profile/Profile';
+import Attendance from './screens/Attendance/Attendance';
+import Calendar from './screens/Calendar/Calendar';
+import Chats from './screens/Chats/Chats';
+import Payments from './screens/Payments/Payments';
+import NoticeBoard from './screens/NoticeBoard/NoticeBoard';
 /*import TabNavigation from './screens/BottomTabNavigation/TabNavigation';*/
 
-
-function StackNavigator() {
-    const AuthStack= createNativeStackNavigator();
-      return (
-          <AuthStack.Navigator initialRouteName="Login" screenOptions={{headerShown: false}}>
-              <AuthStack.Screen name="Login" component={LoginScreen} />
-              <AuthStack.Screen name="Signup" component={SignupScreen} />
-              <AuthStack.Screen name="Home" component={Home} />
-          </AuthStack.Navigator>
-      )
-}
-
-const MainStack = () => {
   const NavigationStack= createNativeStackNavigator();
 
-      return (
-          <NavigationStack.Navigator>
-              <NavigationStack.Screen name="Home" component={Home} />
-              <NavigationStack.Screen name="Attendance" component={Attendance} />
-              <NavigationStack.Screen name="Payments" component={Payments} />
-              <NavigationStack.Screen name="NoticeBoard" component={NoticeBoard} />
-          </NavigationStack.Navigator>
-      )
-}
+  const Stack= createNativeStackNavigator(); //creating the Stack const in function to create stack navigator
+
 
 export default function App() {
-  const Stack= createNativeStackNavigator(); //creating the Stack const in function to create stack navigator
 
     const [isSplash, setisSplash]= useState(true);
     const [isLogged, setIsLogged]= useState(true);
@@ -55,13 +40,25 @@ export default function App() {
               </Animated.View>
           ) : (
             <NavigationContainer>
-                {/*isLogged ? (
-                    <TabNavigation />
-                ) : (
-                        <StackNavigator />
-                    )
-                */}
-                    <StackNavigator />
+                  <NavigationStack.Navigator initialRouteName="Login" screenOptions={{headerShown: false}}>
+                        {isLogged ? (
+                              <>
+                                  <NavigationStack.Screen name="Home" component={Home} />
+                                  <NavigationStack.Screen name="Attendance" component={Attendance} />
+                                  <NavigationStack.Screen name="Payments" component={Payments} />
+                                  <NavigationStack.Screen name="NoticeBoard" component={NoticeBoard} />
+                                  <NavigationStack.Screen name="Calendar" component={Calendar} />
+                                  <NavigationStack.Screen name="Profile" component={Profile} />
+                                  <NavigationStack.Screen name="Chats" component={Chats} />
+                              </>
+                        ) : (
+                          <>
+                                  <NavigationStack.Screen name="Login" component={LoginScreen} />
+                                  <NavigationStack.Screen name="Signup" component={SignupScreen} />
+
+                           </>
+                        )}
+                  </NavigationStack.Navigator>
             </NavigationContainer>
           )
           }
