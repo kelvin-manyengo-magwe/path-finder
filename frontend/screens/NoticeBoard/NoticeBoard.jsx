@@ -1,17 +1,23 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import { useNavigation } from '@react-navigation/native';
 import Box from '../components/Box';
 
 
 const NoticeBoard = () => {
-
+    const navigation = useNavigation();
+    
     return (
       <View className="h-full w-full bg-white">
           <StatusBar style="light" />
 
-            <View style={styles.header} className="h-[70]">
-                  <Text className="text-2xl text-white text-left font-bold ml-8 mt-2">Home</Text>
+            <View style={styles.header} className="w-full flex flex-row h-[70]">
+                      <TouchableOpacity onPress={() => navigation.goBack()}>
+                          <AntDesign name="arrowleft" size={30} style={{ color: 'white', fontWeight: 'bold', padding: 10}}/>
+                      </TouchableOpacity>
+                      <Text className="text-2xl text-white text-left font-bold ml-8 mt-2">NoticeBoard</Text>
             </View>
 
             <View style={styles.grid} className="m-4">

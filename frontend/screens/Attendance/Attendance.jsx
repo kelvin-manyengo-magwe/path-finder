@@ -16,7 +16,7 @@ const Attendance = () => {
 
   return (
     <>
-        <View className=" h-full w-full bg-white">
+        <View className="h-full w-full bg-white">
               <View style={styles.header} className="w-full bg-white flex flex-row h-[70]">
                     <TouchableOpacity onPress={() => navigation.goBack()}>
                         <AntDesign name="arrowleft" size={30} style={{ color: 'white', fontWeight: 'bold', padding: 10}}/>

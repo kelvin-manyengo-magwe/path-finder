@@ -1,33 +1,49 @@
 import React from 'react';
 import { Text, View, StyleSheet, Button, TouchableOpacity,TouchableHighlight, Modal } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import InputField from '../components/InputField';
+import DismissKeyboard from '../components/DismissKeyboard';
 
 
 
 function AddStudents({ setModal }){
 
     return(
-      <View className="w-full h-full bg-white">
-          <Text>Add Attendance</Text>
+      <DismissKeyboard>
+            <View className="w-full h-full bg-white">
+                <Text className="text-center font-bold text-xl pt-2">Take Attendance</Text>
 
+                    {/*adding students form*/}
+                          <View className="mx-4 mt-4">
+                                    <InputField placeholder="Student's Fullname" />
 
-          {/*Add and Close button view*/}
-          <View style={styles.bottomButtons}>
-                <TouchableHighlight  activeOpacity={0.8} underlayColor={'bg-sky-600'} onPress={() => setModal(false)}>
-                      <View style={styles.actualButtons}>
-                            <AntDesign name="closecircleo" style={{ color: 'white' }} size={20} />
-                            <Text className="font-bold text-white">Close</Text>
-                      </View>
-                </TouchableHighlight>
+                                    <InputField placeholder="Email" />
 
-                <TouchableHighlight underlayColor={'bg-sky-600'} activeOpacity={0.8} underlayColor={'white'}>
-                      <View style={styles.actualButtons}>
-                            <AntDesign name="pluscircleo" style={{ color: 'white' }}size={20} />
-                            <Text className="font-bold text-white">Add</Text>
-                      </View>
-                </TouchableHighlight>
-          </View>
-      </View>
+                                    <InputField placeholder="Mobile No" />
+
+                                    <InputField placeholder="Password" />
+
+                                    <InputField placeholder="Course Name" />
+                          </View>
+
+                {/*Add and Close button view*/}
+                <View style={styles.bottomButtons}>
+                      <TouchableHighlight  activeOpacity={0.8} underlayColor={'bg-sky-600'} onPress={() => setModal(false)}>
+                            <View className="px-8 py-2" style={styles.actualButtons}>
+                                  <AntDesign name="closecircleo" style={{ color: 'white' }} size={20} />
+                                  <Text className="font-bold text-white">Close</Text>
+                            </View>
+                      </TouchableHighlight>
+
+                      <TouchableHighlight underlayColor={'bg-sky-600'} activeOpacity={0.8} underlayColor={'white'}>
+                            <View className="px-8 py-2" style={styles.actualButtons}>
+                                  <AntDesign name="pluscircleo" style={{ color: 'white' }}size={20} />
+                                  <Text className="font-bold text-white">Add</Text>
+                            </View>
+                      </TouchableHighlight>
+                </View>
+            </View>
+      </DismissKeyboard>
     )
 }
 
@@ -50,6 +66,5 @@ const styles= StyleSheet.create({
         marginBottom: 20,
         borderRadius: 16,
         backgroundColor: '#2A65D6',
-        padding: 10
     }
 });
