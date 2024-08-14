@@ -5,7 +5,7 @@ function Library() {
 
   return (
     <View style={styles.root}>
-        <Text className="text-bold text-xl text-center">Add Students</Text>
+        <Text className="text-bold text-xl text-center">Library</Text>
     </View>
   )
 }

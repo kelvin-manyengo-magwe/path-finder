@@ -4,7 +4,10 @@ import { StatusBar } from 'expo-status-bar';
 import { useNavigation } from '@react-navigation/native';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Entypo from 'react-native-vector-icons/Entypo';
 
 
 
@@ -21,9 +24,9 @@ const Home = () => {
 
             <View style={styles.container} className="mt-2 mx-2">
                 <View style={[styles.shadowAndroid, styles.box, styles.shadowIos]}>
-                      <TouchableOpacity className="flex justify-center items-center gap-2" onPress={() => navigation.navigate('Attendance')}>
-                          <MaterialCommunityIcons name="sticker-check" size={50} />
-                          <Text className="font-bold text-xl">Attendance</Text>
+                      <TouchableOpacity className="flex justify-center items-center gap-2" onPress={() => navigation.navigate('ViewStudents')}>
+                          <FontAwesome6 name="user-graduate" size={50} />
+                          <Text className="font-bold text-xl">Students</Text>
                       </TouchableOpacity>
                 </View>
                 <View style={[styles.shadowAndroid, styles.box, styles.shadowIos]}>
@@ -57,6 +60,27 @@ const Home = () => {
                       <TouchableOpacity className="flex justify-center items-center gap-2" onPress={() => navigation.navigate('Chats')}>
                           <AntDesign name="wechat" size={50} />
                           <Text className="font-bold text-xl">Chats</Text>
+                      </TouchableOpacity>
+                </View>
+
+                <View style={[styles.shadowAndroid, styles.box, styles.shadowIos]}>
+                      <TouchableOpacity className="flex justify-center items-center gap-2" onPress={() => navigation.navigate('Chats')}>
+                          <FontAwesome5 name="calendar-plus" size={50} />
+                          <Text className="font-bold text-xl">Attendance</Text>
+                      </TouchableOpacity>
+                </View>
+
+                <View style={[styles.shadowAndroid, styles.box, styles.shadowIos]}>
+                      <TouchableOpacity className="flex justify-center items-center gap-2" onPress={() => navigation.navigate('Chats')}>
+                          <MaterialCommunityIcons name="bookshelf" size={50} />
+                          <Text className="font-bold text-xl">Library</Text>
+                      </TouchableOpacity>
+                </View>
+
+                <View style={[styles.shadowAndroid, styles.box, styles.shadowIos]}>
+                      <TouchableOpacity className="flex justify-center items-center gap-2" onPress={() => navigation.navigate('Chats')}>
+                          <Entypo name="open-book" size={50} />
+                          <Text className="font-bold text-xl">Homework</Text>
                       </TouchableOpacity>
                 </View>
             </View>

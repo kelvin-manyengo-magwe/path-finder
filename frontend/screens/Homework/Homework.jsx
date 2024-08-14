@@ -1,16 +1,16 @@
 import React from 'react';
 import { Text, View, StyleSheet, Button, TouchableOpacity,TouchableHighlight, Modal } from 'react-native';
 
-function Library() {
+function Homework() {
 
   return (
     <View style={styles.root}>
-        <Text className="text-bold text-xl text-center">Add Students</Text>
+        <Text className="text-bold text-xl text-center">Library</Text>
     </View>
   )
 }
 
-export default Library;
+export default Homework;
 
 
 const styles= StyleSheet.create({

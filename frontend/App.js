@@ -14,14 +14,16 @@ import Calendar from './screens/Calendar/Calendar';
 import Chats from './screens/Chats/Chats';
 import Payments from './screens/Payments/Payments';
 import NoticeBoard from './screens/NoticeBoard/NoticeBoard';
+import Library from './screens/Library/Library';
+import Homework from './screens/Homework/Homework';
+import ViewStudents from './screens/Students/ViewStudents';
 /*import TabNavigation from './screens/BottomTabNavigation/TabNavigation';*/
 
-  const NavigationStack= createNativeStackNavigator();
-
-  const Stack= createNativeStackNavigator(); //creating the Stack const in function to create stack navigator
 
 
 export default function App() {
+  const NavigationStack= createNativeStackNavigator();  //creating the Stack const in function to create stack navigator
+
 
     const [isSplash, setisSplash]= useState(true);
     const [isLogged, setIsLogged]= useState(true);
@@ -43,6 +45,7 @@ export default function App() {
                   <NavigationStack.Navigator initialRouteName="Login" screenOptions={{headerShown: false}}>
                         {isLogged ? (
                               <>
+
                                   <NavigationStack.Screen name="Home" component={Home} />
                                   <NavigationStack.Screen name="Attendance" component={Attendance} />
                                   <NavigationStack.Screen name="Payments" component={Payments} />
@@ -50,6 +53,9 @@ export default function App() {
                                   <NavigationStack.Screen name="Calendar" component={Calendar} />
                                   <NavigationStack.Screen name="Profile" component={Profile} />
                                   <NavigationStack.Screen name="Chats" component={Chats} />
+                                  <NavigationStack.Screen name="Library" component={Library} />
+                                  <NavigationStack.Screen name="Homework" component={Homework} />
+                                  <NavigationStack.Screen name="ViewStudents" component={ViewStudents} />
                               </>
                         ) : (
                           <>
