@@ -44,6 +44,8 @@ const User= mongoose.model('UserInfo');
 app.post('/register', async (req, res) => {
     const { name, email, password, mobileNo }= req.body;
 
+    console.log('Error in registration.');
+
     const oldUser= await User.findOne({ email: email });
 
     if(oldUser) { //if old user if found it return something then it will not go forward
@@ -62,7 +64,7 @@ app.post('/register', async (req, res) => {
                       data: "User Successuly created." });
     } catch(error) {
           logger.error("Registration Error ", { error: error.message, stack: error.stack });
-          
+
         res.send({status: "Registration error",
                   data: error });
     }
